@@ -5,7 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import cashLogo from "@/assets/kashla-logo.asset.json";
 import vodafoneCashCombo from "@/assets/vodafone-cash-combo.png.asset.json";
 
-import iphoneSound from "@/assets/transfer-notification.m4a.asset.json";
+import pageEnterSound from "@/assets/transfer-success-sound.mp3.asset.json";
+import notificationSound from "@/assets/iphone-notification.m4a.asset.json";
 import { addTransfer } from "@/lib/transfer-history";
 
 export const Route = createFileRoute("/success")({
@@ -119,14 +120,16 @@ function SuccessPage() {
     addTransfer(amount, phone, senderName);
   }, [amount, phone, senderName]);
 
-  // Sound plays immediately on load; notification message slides in after 4s
+  // Page-enter sound plays immediately; notification slides in after 4s with its own sound
   const [showNotif, setShowNotif] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const pageEnterAudioRef = useRef<HTMLAudioElement | null>(null);
+  const notificationAudioRef = useRef<HTMLAudioElement | null>(null);
+
   useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
+    const pageEnterAudio = pageEnterAudioRef.current;
+    if (pageEnterAudio) {
+      pageEnterAudio.currentTime = 0;
+      pageEnterAudio.play().catch(() => {});
     }
     const inTimer = setTimeout(() => setShowNotif(true), 4000);
     const outTimer = setTimeout(() => setShowNotif(false), 8000);
@@ -136,13 +139,24 @@ function SuccessPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (showNotif) {
+      const notificationAudio = notificationAudioRef.current;
+      if (notificationAudio) {
+        notificationAudio.currentTime = 0;
+        notificationAudio.play().catch(() => {});
+      }
+    }
+  }, [showNotif]);
+
   return (
     <main
       dir="rtl"
       className="mx-auto flex min-h-dvh max-w-[430px] flex-col bg-[#F8F9FA] text-foreground shadow-2xl"
     >
       {/* iOS-style push notification */}
-      <audio ref={audioRef} src={iphoneSound.url} preload="auto" />
+      <audio ref={pageEnterAudioRef} src={pageEnterSound.url} preload="auto" />
+      <audio ref={notificationAudioRef} src={notificationSound.url} preload="auto" />
       <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-2">
         <div
           dir="rtl"
