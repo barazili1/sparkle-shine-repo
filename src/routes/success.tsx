@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import cashLogo from "@/assets/kashla-logo.asset.json";
 import vodafoneCashCombo from "@/assets/vodafone-cash-combo.png.asset.json";
 
-import iphoneSound from "@/assets/iphone-notification.m4a.asset.json";
+import iphoneSound from "@/assets/transfer-notification.mp3.asset.json";
 import { addTransfer } from "@/lib/transfer-history";
 
 export const Route = createFileRoute("/success")({
@@ -119,7 +119,7 @@ function SuccessPage() {
     addTransfer(amount, phone, senderName);
   }, [amount, phone, senderName]);
 
-  // iOS-style notification: slides in 2s after load, plays sound, auto-dismisses after 4s
+  // iOS-style notification: slides in 4s after load, plays sound, auto-dismisses after 4s
   const [showNotif, setShowNotif] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
@@ -130,8 +130,8 @@ function SuccessPage() {
         audio.currentTime = 0;
         audio.play().catch(() => {});
       }
-    }, 2000);
-    const outTimer = setTimeout(() => setShowNotif(false), 6000);
+    }, 4000);
+    const outTimer = setTimeout(() => setShowNotif(false), 8000);
     return () => {
       clearTimeout(inTimer);
       clearTimeout(outTimer);
