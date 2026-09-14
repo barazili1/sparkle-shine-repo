@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import vodafoneCashLogo from "@/assets/cash-logo.asset.json";
 
-export const WALLET_PIN = "202020";
+export const WALLET_PIN = "150150";
 
 export function PinSheet({
   onClose,
