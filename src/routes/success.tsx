@@ -155,7 +155,8 @@ function SuccessPage() {
       className="mx-auto flex min-h-dvh max-w-[430px] flex-col bg-[#F8F9FA] text-foreground shadow-2xl"
     >
       {/* iOS-style push notification */}
-      <audio ref={audioRef} src={iphoneSound.url} preload="auto" />
+      <audio ref={pageEnterAudioRef} src={pageEnterSound.url} preload="auto" />
+      <audio ref={notificationAudioRef} src={notificationSound.url} preload="auto" />
       <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-2">
         <div
           dir="rtl"
