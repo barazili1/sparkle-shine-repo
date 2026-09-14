@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ChevronRight, MessageCircle, Share2, User } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Lottie from "lottie-react";
+
+import successAnimation from "@/assets/success_animation.json";
 
 import cashLogo from "@/assets/kashla-logo.asset.json";
 import vodafoneCashCombo from "@/assets/vodafone-cash-combo.png.asset.json";
