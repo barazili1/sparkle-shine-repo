@@ -64,7 +64,10 @@ function SuccessPage() {
     return String(100000000000 + (Math.abs(h) % 900000000000));
   }, [amount, phone, senderName]);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const now = new Date();
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
