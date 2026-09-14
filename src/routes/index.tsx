@@ -10,7 +10,7 @@ import gasIcon from "@/assets/icon-gas.asset.json";
 import offerBanner from "@/assets/offer-banner.jpg";
 import prosecutionIcon from "@/assets/icon-prosecution.asset.json";
 import { PinSheet } from "@/components/pin-sheet";
-import cashLogoClean from "@/assets/cash-logo-clean.jpeg.asset.json";
+import walletNavLogo from "@/assets/wallet-nav-logo.jpeg.asset.json";
 import loadingLogo from "@/assets/vodafone-loading-logo.png.asset.json";
 import { getTransfers, formatArabicNumber, formatArabicDate, type TransferRecord } from "@/lib/transfer-history";
 
@@ -423,7 +423,9 @@ function Index() {
                 icon: Fingerprint,
                 color: "bg-[#f9ab00]",
               },
-            ].map((tx, i) => (
+            ]
+              .slice(0, 4)
+              .map((tx, i) => (
               <div key={i} className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div
