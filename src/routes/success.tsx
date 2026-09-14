@@ -119,18 +119,16 @@ function SuccessPage() {
     addTransfer(amount, phone, senderName);
   }, [amount, phone, senderName]);
 
-  // iOS-style notification: slides in 4s after load, plays sound, auto-dismisses after 4s
+  // Sound plays immediately on load; notification message slides in after 4s
   const [showNotif, setShowNotif] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
-    const inTimer = setTimeout(() => {
-      setShowNotif(true);
-      const audio = audioRef.current;
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play().catch(() => {});
-      }
-    }, 4000);
+    const audio = audioRef.current;
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    }
+    const inTimer = setTimeout(() => setShowNotif(true), 4000);
     const outTimer = setTimeout(() => setShowNotif(false), 8000);
     return () => {
       clearTimeout(inTimer);
