@@ -518,11 +518,11 @@ function Index() {
             style={{ height: "28px", width: "28px" }}
           >
             <img
-              src={cashLogoClean.url}
+              src={walletNavLogo.url}
               alt="المحفظة"
               width={28}
               height={28}
-              className="h-[28px] w-[28px] rounded-full object-cover object-[center_25%]"
+              className="h-[28px] w-[28px] rounded-full object-contain"
             />
           </span>
           <span className="mt-1 text-[11px] font-bold">المحفظة</span>
