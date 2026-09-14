@@ -5,8 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import cashLogo from "@/assets/kashla-logo.asset.json";
 import vodafoneCashCombo from "@/assets/vodafone-cash-combo.png.asset.json";
 
-import pageEnterSound from "@/assets/transfer-success-sound.mp3.asset.json";
-import notificationSound from "@/assets/iphone-notification.m4a.asset.json";
+import pageEnterSound from "@/assets/transfer-success-sound.mp3";
+import notificationSound from "@/assets/iphone-notification.m4a";
 import { addTransfer } from "@/lib/transfer-history";
 
 export const Route = createFileRoute("/success")({
