@@ -104,9 +104,12 @@ function SuccessPage() {
     const now = new Date();
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
-    setDate(
-      `${h}:${m} ${now.getFullYear()} ${arabicMonths[now.getMonth()]} ${now.getDate()}`,
-    );
+    setDateParts({
+      day: String(now.getDate()),
+      month: arabicMonths[now.getMonth()],
+      year: String(now.getFullYear()),
+      time: `${h}:${m}`,
+    });
   }, []);
 
   const saved = useRef(false);
@@ -283,8 +286,17 @@ function SuccessPage() {
         <div className="mt-3 rounded-[18px] bg-white px-4 shadow-sm">
           <div className="flex items-center justify-between py-2.5">
             <span className="text-[15px]">تاريخ العملية</span>
-            <span className="text-[15px] font-bold" dir="ltr">
-              {date || "—"}
+            <span className="text-[15px] font-bold" dir="rtl">
+              {dateParts ? (
+                <>
+                  <span>{dateParts.day}</span>{" "}
+                  <span>{dateParts.month}</span>{" "}
+                  <span>{dateParts.year}</span>{" "}
+                  <span>{dateParts.time}</span>
+                </>
+              ) : (
+                "—"
+              )}
             </span>
           </div>
           <div className="flex items-center justify-between pb-2.5">
