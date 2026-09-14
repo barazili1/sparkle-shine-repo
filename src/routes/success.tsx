@@ -120,14 +120,16 @@ function SuccessPage() {
     addTransfer(amount, phone, senderName);
   }, [amount, phone, senderName]);
 
-  // Sound plays immediately on load; notification message slides in after 4s
+  // Page-enter sound plays immediately; notification slides in after 4s with its own sound
   const [showNotif, setShowNotif] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const pageEnterAudioRef = useRef<HTMLAudioElement | null>(null);
+  const notificationAudioRef = useRef<HTMLAudioElement | null>(null);
+
   useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
+    const pageEnterAudio = pageEnterAudioRef.current;
+    if (pageEnterAudio) {
+      pageEnterAudio.currentTime = 0;
+      pageEnterAudio.play().catch(() => {});
     }
     const inTimer = setTimeout(() => setShowNotif(true), 4000);
     const outTimer = setTimeout(() => setShowNotif(false), 8000);
@@ -136,6 +138,16 @@ function SuccessPage() {
       clearTimeout(outTimer);
     };
   }, []);
+
+  useEffect(() => {
+    if (showNotif) {
+      const notificationAudio = notificationAudioRef.current;
+      if (notificationAudio) {
+        notificationAudio.currentTime = 0;
+        notificationAudio.play().catch(() => {});
+      }
+    }
+  }, [showNotif]);
 
   return (
     <main
