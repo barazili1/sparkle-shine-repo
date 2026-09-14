@@ -180,7 +180,7 @@ function SuccessPage() {
         <div className="mt-6 flex justify-center">
           {mounted && (
             <Lottie
-              animationData={successAnimation}
+              src={successAnimation}
               loop={false}
               autoplay
               style={{ width: 110, height: 110 }}
