@@ -106,7 +106,7 @@ function SuccessPage() {
     const m = String(now.getMinutes()).padStart(2, "0");
     setDateParts({
       day: String(now.getDate()),
-      month: arabicMonths[now.getMonth()],
+      month: arabicMonths[now.getMonth()] ?? "",
       year: String(now.getFullYear()),
       time: `${h}:${m}`,
     });
