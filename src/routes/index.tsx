@@ -330,9 +330,40 @@ function Index() {
 
         <div className="mt-[7px] grid grid-cols-2 gap-2" dir="rtl">
           <div className="relative flex h-[210px] flex-col justify-end overflow-hidden rounded-[16px] bg-panel p-3">
+            <svg
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full"
+              viewBox="0 0 200 210"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="expensesWave" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#7fa5b5" />
+                  <stop offset="100%" stopColor="#c9dde7" />
+                </linearGradient>
+              </defs>
+              {/* faint grid */}
+              {[52, 104, 156].map((y) => (
+                <line key={y} x1="0" y1={y} x2="200" y2={y} stroke="#e2e8ec" strokeWidth="1" />
+              ))}
+              {[50, 100, 150].map((x) => (
+                <line key={x} x1={x} y1="0" x2={x} y2="210" stroke="#e2e8ec" strokeWidth="1" />
+              ))}
+              {/* wave */}
+              <path
+                d="M200 40 C 170 40 165 95 135 100 C 105 105 100 150 70 155 C 40 160 25 200 0 210 L 200 210 Z"
+                fill="url(#expensesWave)"
+              />
+              <path
+                d="M200 40 C 170 40 165 95 135 100 C 105 105 100 150 70 155 C 40 160 25 200 0 210"
+                fill="none"
+                stroke="#7fa5b5"
+                strokeWidth="2"
+              />
+            </svg>
             <h2 className="absolute right-3 top-3 text-[16px] font-extrabold">مصروفاتك</h2>
-            <p className="flex items-baseline gap-1 text-[15px]" dir="rtl">
-              <span className="text-[34px] font-normal leading-none">{formatArabicNumber(expenses)}</span>
+            <p className="relative flex items-baseline gap-1 text-[15px]" dir="rtl">
+              <span className="text-[34px] font-normal leading-none tracking-tight">{formatArabicNumber(expenses)}</span>
               <span>جنيه</span>
             </p>
           </div>
