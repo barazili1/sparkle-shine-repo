@@ -100,7 +100,7 @@ function SuccessPage() {
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
     setDate(
-      `${arabicMonths[now.getMonth()]} ${now.getDate()} ${now.getFullYear()} ${h}:${m}`,
+      `${now.getDate()} ${arabicMonths[now.getMonth()]} ${now.getFullYear()} ${h}:${m}`,
     );
   }, []);
 
