@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ChevronRight, MessageCircle, Share2, User } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Lottie } from "lottie-react";
+
+import successAnimation from "@/assets/success_animation.json";
 
 import cashLogo from "@/assets/kashla-logo.asset.json";
 import vodafoneCashCombo from "@/assets/vodafone-cash-combo.png.asset.json";
@@ -43,46 +46,6 @@ const arabicMonths = [
   "ديسمبر",
 ];
 
-/** Scalloped badge-style green success icon */
-function ScallopBadge({ size = 80 }: { size?: number }) {
-  const cx = 50;
-  const cy = 50;
-  const r = 42;
-  const n = 14;
-  const depth = 3.5;
-  const rOut = r + depth;
-  const parts: string[] = [];
-  for (let i = 0; i < n; i++) {
-    const a1 = (i / n) * 2 * Math.PI;
-    const a2 = ((i + 0.5) / n) * 2 * Math.PI;
-    const a3 = ((i + 1) / n) * 2 * Math.PI;
-    if (i === 0) {
-      parts.push(
-        `M ${(cx + r * Math.cos(a1)).toFixed(2)} ${(cy + r * Math.sin(a1)).toFixed(2)}`,
-      );
-    }
-    parts.push(
-      `Q ${(cx + rOut * Math.cos(a2)).toFixed(2)} ${(cy + rOut * Math.sin(a2)).toFixed(2)} ${(cx + r * Math.cos(a3)).toFixed(2)} ${(cy + r * Math.sin(a3)).toFixed(2)}`,
-    );
-  }
-  parts.push("Z");
-  const d = parts.join(" ");
-  return (
-    <svg viewBox="0 0 100 100" width={size} height={size}>
-      <path d={d} fill="#34B561" />
-      <path
-        d="M 36 50 L 45 59 L 64 39"
-        stroke="white"
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  );
-}
-
-
 function SuccessPage() {
   const { amount, phone, senderName } = Route.useSearch();
   const [dateParts, setDateParts] = useState<{
@@ -101,7 +64,10 @@ function SuccessPage() {
     return String(100000000000 + (Math.abs(h) % 900000000000));
   }, [amount, phone, senderName]);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const now = new Date();
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
@@ -215,7 +181,14 @@ function SuccessPage() {
       <div className="flex min-h-0 flex-1 flex-col px-4">
         {/* Success icon */}
         <div className="mt-6 flex justify-center">
-          <ScallopBadge size={80} />
+          {mounted && (
+            <Lottie
+              src={successAnimation}
+              loop={false}
+              autoplay
+              style={{ width: 110, height: 110 }}
+            />
+          )}
         </div>
         <p className="mt-3 text-center text-[16px] font-normal text-foreground/55">
           تم التحويل بنجاح
