@@ -46,46 +46,6 @@ const arabicMonths = [
   "ديسمبر",
 ];
 
-/** Scalloped badge-style green success icon */
-function ScallopBadge({ size = 80 }: { size?: number }) {
-  const cx = 50;
-  const cy = 50;
-  const r = 42;
-  const n = 14;
-  const depth = 3.5;
-  const rOut = r + depth;
-  const parts: string[] = [];
-  for (let i = 0; i < n; i++) {
-    const a1 = (i / n) * 2 * Math.PI;
-    const a2 = ((i + 0.5) / n) * 2 * Math.PI;
-    const a3 = ((i + 1) / n) * 2 * Math.PI;
-    if (i === 0) {
-      parts.push(
-        `M ${(cx + r * Math.cos(a1)).toFixed(2)} ${(cy + r * Math.sin(a1)).toFixed(2)}`,
-      );
-    }
-    parts.push(
-      `Q ${(cx + rOut * Math.cos(a2)).toFixed(2)} ${(cy + rOut * Math.sin(a2)).toFixed(2)} ${(cx + r * Math.cos(a3)).toFixed(2)} ${(cy + r * Math.sin(a3)).toFixed(2)}`,
-    );
-  }
-  parts.push("Z");
-  const d = parts.join(" ");
-  return (
-    <svg viewBox="0 0 100 100" width={size} height={size}>
-      <path d={d} fill="#34B561" />
-      <path
-        d="M 36 50 L 45 59 L 64 39"
-        stroke="white"
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  );
-}
-
-
 function SuccessPage() {
   const { amount, phone, senderName } = Route.useSearch();
   const [dateParts, setDateParts] = useState<{
