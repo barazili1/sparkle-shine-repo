@@ -84,7 +84,12 @@ function ScallopBadge({ size = 80 }: { size?: number }) {
 
 function SuccessPage() {
   const { amount, phone, senderName } = Route.useSearch();
-  const [date, setDate] = useState("");
+  const [dateParts, setDateParts] = useState<{
+    day: string;
+    month: string;
+    year: string;
+    time: string;
+  } | null>(null);
   // Deterministic reference number (stable across SSR/client hydration)
   const txNumber = useMemo(() => {
     const seed = `${amount}|${phone}|${senderName}`;
