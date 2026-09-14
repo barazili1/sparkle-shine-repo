@@ -186,7 +186,7 @@ function SuccessPage() {
               src={successAnimation}
               loop={false}
               autoplay
-              style={{ width: 110, height: 110 }}
+              style={{ width: 100, height: 100 }}
             />
           )}
         </div>
