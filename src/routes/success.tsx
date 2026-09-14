@@ -178,7 +178,14 @@ function SuccessPage() {
       <div className="flex min-h-0 flex-1 flex-col px-4">
         {/* Success icon */}
         <div className="mt-6 flex justify-center">
-          <ScallopBadge size={80} />
+          {mounted && (
+            <Lottie
+              animationData={successAnimation}
+              loop={false}
+              autoplay
+              style={{ width: 110, height: 110 }}
+            />
+          )}
         </div>
         <p className="mt-3 text-center text-[16px] font-normal text-foreground/55">
           تم التحويل بنجاح
